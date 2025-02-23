@@ -43,8 +43,8 @@ io.on("connection", (socket) => {
 });
 
 const PORT = process.env.PORT || 5001;
+const HOST = process.env.HOST || "0.0.0.0"; // Указываем 0.0.0.0 для работы с публичным IP
 
-server.listen(PORT, () => {
-  const host = process.env.HOST || "localhost";
-  console.log(`🚀 Server running on http://${host}:${PORT}`);
+server.listen(PORT, HOST, () => {
+  console.log(`🚀 Server running on http://${HOST}:${PORT}`);
 });
