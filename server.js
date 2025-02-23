@@ -6,6 +6,20 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
+// CSP
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
+  );
+  next();
+});
+
+app.get("/", (req, res) => {
+  res.send("Hello!");
+});
+
+
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: { origin: "*" },
